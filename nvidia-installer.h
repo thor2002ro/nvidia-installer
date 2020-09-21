@@ -448,7 +448,7 @@ typedef struct __package {
 #define DEFAULT_DOCUMENTATION_PREFIX     "/usr"
 #define DEFAULT_APPLICATION_PROFILE_PATH "/usr/share/nvidia"
 
-#define DEFAULT_LIBDIR                  "lib"
+#define DEFAULT_LIBDIR                  "lib64"
 #define DEFAULT_32BIT_LIBDIR            "lib32"
 #define DEFAULT_64BIT_LIBDIR            "lib64"
 #define DEFAULT_IA32_TRIPLET_LIBDIR     "lib/i386-linux-gnu"

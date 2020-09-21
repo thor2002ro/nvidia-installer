@@ -43,7 +43,7 @@
 #include "kernel.h"
 #include "conflicting-kernel-modules.h"
 
-#define BACKUP_DIRECTORY "/var/lib/nvidia"
+#define BACKUP_DIRECTORY "$PKG/var/lib/nvidia"
 #define BACKUP_LOG       (BACKUP_DIRECTORY "/log")
 #define BACKUP_MKDIR_LOG (BACKUP_DIRECTORY "/dirs")
 

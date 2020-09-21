@@ -1153,13 +1153,12 @@ void should_install_optional_modules(Options *op, Package *p,
         }
 
         if (!install) {
-            ui_warn(op, "The %s module will not be installed. As a result, %s "
-                    "will not function with this installation of the NVIDIA "
-                    "driver.", optional_modules[i].module_name,
+            ui_warn(op, "The %s module will be installed with no gpu detect. As a result, %s "
+                    "will function with this installation of the NVIDIA "
+                    "driver, but only if the card is installed", optional_modules[i].module_name,
                     optional_modules[i].optional_module_dependee);
-
-            remove_kernel_module_from_package(p,
-                                              optional_modules[i].module_name);
+//            remove_kernel_module_from_package(p,
+//                                              optional_modules[i].module_name);
         }
     }
 }
@@ -2036,7 +2035,10 @@ int check_for_nvidia_graphics_devices(Options *op, Package *p)
                  "For further details, please see the appendix SUPPORTED "
                  "NVIDIA GRAPHICS CHIPS in the README available on the Linux "
                  "driver download page at www.nvidia.com.", p->version);
-        return FALSE;
+       /*        return FALSE;
+        * We're just going to keep the message but skip the result
+        * so we can run this in a VM.
+        */
     }
 
     if (!found_vga_device)
@@ -2215,7 +2217,7 @@ done:
 
 
 
-#define DISTRO_HOOK_DIRECTORY "/usr/lib/nvidia/"
+#define DISTRO_HOOK_DIRECTORY "$PKG/usr/lib/nvidia/"
 
 /*
  * run_distro_hook() - run a distribution-provided hook script

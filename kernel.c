@@ -23,7 +23,8 @@
 #include <sys/utsname.h>
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/sysctl.h>
+#include <linux/sysctl.h>
+#include <sys/syscall.h>
 #include <ctype.h>
 #include <stdlib.h>
 #include <dirent.h>
@@ -1085,8 +1086,8 @@ static int set_loglevel(int level, int *old_level)
         int name[] = { CTL_KERN, KERN_PRINTK };
 
         if (!old_level ||
-            sysctl(name, ARRAY_LEN(name), old_level, &len, NULL, 0) == 0) {
-            if (sysctl(name, ARRAY_LEN(name), NULL, 0, &level, len) == 0) {
+            syscall(SYS__sysctl, name, ARRAY_LEN(name), old_level, &len, NULL, 0) == 0) {
+            if (syscall(SYS__sysctl, name, ARRAY_LEN(name), NULL, 0, &level, len) == 0) {
                 loglevel_set = TRUE;
             }
         }

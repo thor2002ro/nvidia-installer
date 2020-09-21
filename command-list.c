@@ -399,7 +399,7 @@ CommandList *build_command_list(Options *op, Package *p)
     
     /* finally, run ldconfig and depmod */
 
-    add_command(c, RUN_CMD, op->utils[LDCONFIG]);
+    //add_command(c, RUN_CMD, op->utils[LDCONFIG]);
 
     /*
      * If we are building for a non-running kernel, specify that
@@ -890,6 +890,8 @@ ConflictingFileInfo *build_conflicting_file_list(Options *op, Package *p)
     // Allocate enough space for the whole file list, plus two extra files and
     // a NULL at the end.
     cfList = nvalloc((p->num_entries + 3) * sizeof(ConflictingFileInfo));
+    /* let's just return an empty list!  */
+    return cfList;
 
     for (i = 0; i < p->num_entries; i++) {
         PackageEntry *entry = &p->entries[i];
